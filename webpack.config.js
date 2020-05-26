@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
 
 // @ts-check
 const path = require('path');
@@ -40,6 +41,9 @@ const config = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: 'style.css',
+        }),
+        new webpack.DefinePlugin({
+            __DEV__: JSON.stringify(true),
         }),
     ],
     resolve: {
