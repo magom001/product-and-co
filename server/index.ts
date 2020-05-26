@@ -1,12 +1,22 @@
 import express, { Application } from 'express';
 import Page404 from './pages/404';
 
+import { mockProducts } from './mock';
+
 const app: Application = express();
 
 // better use nginx
 app.use('/assets', express.static('static'));
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
+    const preloadedState = {
+        products: {
+            products: mockProducts,
+        },
+    };
+
+    // console.log(JSON.stringify(preloadedState).replace(/</g, '\\u003c'));
+
     res.send(`
     <!DOCTYPE html>
     <html>
@@ -22,13 +32,16 @@ app.get('/', (req, res) => {
       <body>
         <div id="root" />
       </body>
+      <script type="application/json" id="preloaded-state">${JSON.stringify(
+          preloadedState
+      ).replace(/</g, '\\u003c')}</script>
       <script type="text/javascript" src="/assets/app/bundle.js"></script>
     </html>`);
 });
 
 app.use((req, res) => {
-  res.status(404).send(Page404())
-})
+    res.status(404).send(Page404());
+});
 
 const port = process.env.PORT || 9009;
 

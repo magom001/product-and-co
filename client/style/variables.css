@@ -1,4 +1,18 @@
 :root {
     --color-white: #fff;
     --color-black: #222;
+
+    --space-s: 6px;
+    --space-m: 12px;
+    --space-l: 18px;
+    --space-xl: 24px;
+    --space-xxl: 32px;
+
+    /* Products */
+    --product-container-width: 320px;
+    --product-container-padding-top: var(--space-m);
+    --product-container-padding-left: var(--space-l);
+    --product-container-inner-padding: var(--space-l);
+    --product-container-padding: var(--product-container-padding-top)
+        var(--product-container-padding-left);
 }

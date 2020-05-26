@@ -1,0 +1,9 @@
+.Container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Product {
+    flex-grow: 0;
+    flex-shrink: 0;
+}

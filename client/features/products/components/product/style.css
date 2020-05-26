@@ -1,0 +1,56 @@
+.Container {
+    width: var(--product-container-width);
+    padding: var(--product-container-padding);
+    transition: all 0.2s ease;
+}
+
+.Container:hover .Inner {
+    box-shadow: 0px 0px 21px 2px rgba(119, 119, 119, 0.9);
+}
+
+.Inner {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0px 0px 21px 2px rgba(119, 119, 119, 0.8);
+    padding: var(--product-container-inner-padding);
+}
+
+.ProductName {
+    display: block;
+    white-space: nowrap;
+    max-width: 80%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: var(--space-s) auto;
+    text-align: center;
+}
+
+.Image {
+    width: calc(
+        var(--product-container-width) - 2 *
+            var(--product-container-padding-left) - 2 *
+            var(--product-container-inner-padding)
+    );
+    height: calc(
+        var(--product-container-width) - 2 *
+            var(--product-container-padding-left) - 2 *
+            var(--product-container-inner-padding)
+    );
+    object-fit: cover;
+}
+
+.Attribute {
+    margin: var(--space-s) 0;
+}
+
+.CloseButton {
+    visibility: hidden;
+    position: absolute;
+    top: var(--space-m);
+    right: var(--space-m);
+}
+
+.Inner:hover .CloseButton {
+    visibility: visible;
+}

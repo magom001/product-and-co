@@ -1,0 +1,18 @@
+.Button {
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    padding: 2px;
+    margin: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.75;
+}
+
+.Button:hover {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+.Button:active {
+    transform: scale(0.95);
+}
