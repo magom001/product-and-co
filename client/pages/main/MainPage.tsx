@@ -1,12 +1,14 @@
 import React from 'react';
 
-import classes from './style.css'
+import classes from './style.css';
+import ProductList from '../../features/products';
 
 const MainPage = () => {
     return (
-        <div>
+        <>
             <h1 className={classes.title}>Main Page</h1>
-        </div>
+            <ProductList />
+        </>
     );
 };
 

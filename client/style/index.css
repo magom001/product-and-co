@@ -1,0 +1,9 @@
+@import 'variables.css';
+@import 'normalise.css';
+
+html,
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+    color: var(--color-black);
+}

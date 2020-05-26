@@ -1,4 +1,5 @@
 import express, { Application } from 'express';
+import Page404 from './pages/404';
 
 const app: Application = express();
 
@@ -16,14 +17,18 @@ app.get('/', (req, res) => {
         <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
         <link rel="manifest" href="/assets/favicon/site.webmanifest">
-        <link rel="stylesheet" href="/assets/style.css">
+        <link rel="stylesheet" href="/assets/app/style.css">
       </head>
       <body>
         <div id="root" />
       </body>
-      <script type="text/javascript" src="/assets/bundle.js"></script>
+      <script type="text/javascript" src="/assets/app/bundle.js"></script>
     </html>`);
 });
+
+app.use((req, res) => {
+  res.status(404).send(Page404())
+})
 
 const port = process.env.PORT || 9009;
 

@@ -12,7 +12,7 @@ const config = {
     entry: './client/index.tsx',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'static'),
+        path: path.resolve(__dirname, 'static', 'app'),
     },
     module: {
         rules: [
