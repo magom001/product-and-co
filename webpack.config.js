@@ -1,3 +1,5 @@
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 // @ts-check
 const path = require('path');
 
@@ -19,8 +21,27 @@ const config = {
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
+            {
+                test: /\.css/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                localIdentName: '[path][name]__[local]',
+                            },
+                        },
+                    },
+                ],
+            },
         ],
     },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'style.css',
+        }),
+    ],
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
     },

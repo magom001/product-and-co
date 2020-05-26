@@ -1,9 +1,11 @@
 import React from 'react';
 
+import classes from './style.css'
+
 const MainPage = () => {
     return (
         <div>
-            <h1>Main Page!!!</h1>
+            <h1 className={classes.title}>Main Page</h1>
         </div>
     );
 };
