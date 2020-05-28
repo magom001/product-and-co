@@ -1,6 +1,6 @@
-import { all, takeEvery } from 'redux-saga/effects';
-import { testSaga } from './testSaga';
+import { all, spawn } from 'redux-saga/effects';
+import { watchDeleteProductRequests } from './deleteProductSaga';
 
 export const productsRootSaga = function* () {
-    yield all([takeEvery('TEST', testSaga)]);
+    yield all([spawn(watchDeleteProductRequests)]);
 };

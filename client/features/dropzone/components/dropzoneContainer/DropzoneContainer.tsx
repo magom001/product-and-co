@@ -5,13 +5,7 @@ import AddProductButton from '../addProductButton';
 import classes from './style.css';
 import AddProductModal from '../addProductModal';
 import { DropzoneProps } from './DropzoneContainer.connect';
-
-export interface IProduct {
-    name: string;
-    quantity: number;
-    price: number;
-    colour: string;
-}
+import { Product } from '../../../products/slice';
 
 const DropzoneContainer: FunctionComponent<DropzoneProps> = ({
     addProduct,
@@ -19,7 +13,7 @@ const DropzoneContainer: FunctionComponent<DropzoneProps> = ({
     const [file, setFile] = useState<File | null>(null);
     const [imgSrc, setImgSrc] = useState<string | null>(null);
     const [progress, setProgress] = useState<boolean>(false);
-    const [product, setProduct] = useState<IProduct>({
+    const [product, setProduct] = useState<Omit<Product, 'id' | 'fileName'>>({
         name: 'Product XYZ',
         quantity: 1,
         price: 1,

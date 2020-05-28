@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useCallback } from 'react';
 import cn from 'classnames';
 import { Product } from '../../slice';
 
@@ -8,13 +8,19 @@ import { CloseButton } from '../../../../components';
 
 const Product: FunctionComponent<ProductProps> = ({
     className,
-    product: { name, imageUrl, price, quantity, colour },
+    product: { name, price, quantity, colour, id },
+    imageUrl,
+    deleteProduct,
 }) => {
+    const onDeleteButtonClick = useCallback(() => {
+        deleteProduct(id);
+    }, [deleteProduct, id]);
+
     return (
         <div className={cn(classes.Container, className)}>
             <div className={classes.Inner}>
                 <CloseButton
-                    onClick={() => {}}
+                    onClick={onDeleteButtonClick}
                     className={classes.CloseButton}
                 />
                 <span className={classes.ProductName}>{name}</span>

@@ -1,7 +1,7 @@
-import { IProduct } from '../features/dropzone/components/dropzoneContainer/DropzoneContainer';
+import { Product } from '../features/products/slice';
 
 interface ApiCallOptions {
-    method: 'POST' | 'GET' | 'PUT';
+    method: 'POST' | 'GET' | 'PUT' | 'DELETE';
     body: BodyInit;
     headers?: HeadersInit;
 }
@@ -20,7 +20,9 @@ const apiCall = async (
     return response.json();
 };
 
-export const saveProduct = async (input: IProduct & { file: File }) => {
+export const saveProduct = async (
+    input: Omit<Product, 'id' | 'fileName'> & { file: File }
+) => {
     const fd = new FormData();
     fd.append('image', input.file);
     fd.append('name', input.name);
@@ -31,4 +33,11 @@ export const saveProduct = async (input: IProduct & { file: File }) => {
     const response = await apiCall('product', { method: 'POST', body: fd });
 
     return response;
+};
+
+export const deleteProduct = async (id: Product['id']) => {
+    return await apiCall('product', {
+        method: 'DELETE',
+        body: JSON.stringify({ id }),
+    });
 };

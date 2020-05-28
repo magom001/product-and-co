@@ -1,14 +1,15 @@
 import React, { useState, FunctionComponent } from 'react';
 import { Modal, Button, Input } from '../../../../components';
-import { IProduct } from '../dropzoneContainer/DropzoneContainer';
+
 import classes from './style.css';
+import { Product } from '../../../products/slice';
 
 interface AddProductModalProps {
     visible: boolean;
     onClose: () => void;
     onSave: () => void;
     imgSrc: string;
-    product: IProduct;
+    product: Omit<Product, 'id' | 'fileName'>;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     progress: boolean;
 }
@@ -20,11 +21,11 @@ const AddProductModal: FunctionComponent<AddProductModalProps> = ({
     imgSrc,
     product,
     onChange,
-    progress
+    progress,
 }) => {
     return (
         <Modal visible={visible} onClose={onClose}>
-            { progress && <section>Loading...</section>}
+            {progress && <section>Loading...</section>}
             <section className={classes.Container}>
                 <img src={imgSrc} className={classes.Image} />
                 <Input

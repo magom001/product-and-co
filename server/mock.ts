@@ -6,7 +6,7 @@ export const mockProducts: Record<Product['id'], Product> = {
         name: 'Milk',
         quantity: 123,
         price: 0.99,
-        imageUrl: '/assets/images/milk.jpg',
+        fileName: 'milk.jpg',
         colour: 'red',
     },
     saussage: {
@@ -14,7 +14,7 @@ export const mockProducts: Record<Product['id'], Product> = {
         name: 'Saussage',
         quantity: 0,
         price: 3.5,
-        imageUrl: '/assets/images/saussage.jpg',
+        fileName: 'saussage.jpg',
         colour: 'red',
     },
     bread: {
@@ -22,7 +22,7 @@ export const mockProducts: Record<Product['id'], Product> = {
         name: 'Bread bread bread bread bread bread bread bread',
         quantity: 10,
         price: 1.25,
-        imageUrl: '/assets/images/bread.jpg',
+        fileName: 'bread.jpg',
         colour: 'white',
     },
 };

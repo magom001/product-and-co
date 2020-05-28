@@ -1,5 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IProduct } from '../dropzone/components/dropzoneContainer/DropzoneContainer';
+import { createSlice, PayloadAction, createAction } from '@reduxjs/toolkit';
 
 export interface Product {
     id: string;
@@ -7,7 +6,7 @@ export interface Product {
     quantity: number;
     price: number;
     colour: string;
-    imageUrl: string;
+    fileName: string;
 }
 
 export enum LoadingState {
@@ -29,22 +28,33 @@ const productsSlice = createSlice({
     name: 'products',
     initialState,
     reducers: {
-        addProduct(
-            state: ProductsState,
-            action: PayloadAction<IProduct & { fileName: string; id: string }>
-        ) {
+        addProduct(state: ProductsState, action: PayloadAction<Product>) {
             state.products[action.payload.id] = {
                 name: action.payload.name,
                 quantity: action.payload.quantity,
                 price: action.payload.price,
                 colour: action.payload.colour,
                 id: action.payload.id,
-                imageUrl: `/assets/images/${action.payload.fileName}`,
+                fileName: action.payload.fileName,
             };
+        },
+        removeProduct(state: ProductsState, action: PayloadAction<string>) {
+            state.products = Object.keys(state.products).reduce(
+                (prev, current) => {
+                    if (current !== action.payload) {
+                        prev[current] = state.products[current];
+                    }
+
+                    return prev;
+                },
+                {} as Record<Product['id'], Product>
+            );
         },
     },
 });
 
-export const { addProduct } = productsSlice.actions;
+export const deleteProduct = createAction<string>('@PRODUCT/DELETE');
+
+export const { addProduct, removeProduct } = productsSlice.actions;
 
 export const productsReducer = productsSlice.reducer;
