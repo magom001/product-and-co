@@ -4,7 +4,32 @@
 }
 
 .Image {
-    width: 300px;
-    height: 300px;
+    width: 150px;
+    height: 150px;
+    margin: 0 var(--space-xxxl);
     object-fit: cover;
+    margin-bottom: var(--space-l);
+}
+
+.ButtonContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Button {
+    flex-basis: 30%;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+.Button:first-child {
+    margin-right: var(--space-s);
+}
+
+.Button:last-child {
+    margin-left: var(--space-s);
+}
+
+.Input {
+    margin-bottom: var(--space-l);
 }

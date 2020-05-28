@@ -6,6 +6,7 @@ import React, {
 } from 'react';
 
 import classes from './style.css';
+import { Button } from '../../../../components';
 
 interface AddProductButtonProps {
     onFilePicked: (file: File) => void;
@@ -35,18 +36,16 @@ const AddProductButton: FunctionComponent<AddProductButtonProps> = ({
     );
 
     return (
-        <>
-            <span className={classes.Button}>
-                <input
-                    className={classes.Input}
-                    type="file"
-                    accept="image/png, image/jpeg"
-                    onChange={onChange}
-                    ref={inputRef}
-                />
-                Add product
-            </span>
-        </>
+        <Button theme="action">
+            <input
+                className={classes.Input}
+                type="file"
+                accept="image/png, image/jpeg"
+                onChange={onChange}
+                ref={inputRef}
+            />
+            Add product
+        </Button>
     );
 };
 

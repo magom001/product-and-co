@@ -10,14 +10,15 @@ router.post('/product', (req, res) => {
     }
 
     console.log(req.body);
-    const file = req.files.productImage as UploadedFile;
+    const file = req.files.image as UploadedFile;
 
-    const p = path.join(process.cwd(), process.env.IMAGES_PATH || '', `test${path.extname(file.name)}`);
+    const fileName = `test${path.extname(file.name)}`;
+    const p = path.join(process.cwd(), process.env.IMAGES_PATH || '', fileName);
     file.mv(p, (err) => {
         if (err) {
             res.status(500).send(err);
         } else {
-            res.status(200).json({ status: 'ok' });
+            res.status(200).json({ status: 'ok', fileName, id: 'test' });
         }
     });
 });

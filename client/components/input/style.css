@@ -1,0 +1,48 @@
+.Input {
+    padding: var(--input-padding);
+    outline: none;
+    border: var(--input-border);
+    color: var(--input-font-color);
+    width: 100%;
+    height: 100%;
+}
+
+.Input::placeholder {
+    color: var(--input-placeholder-color);
+}
+
+.Input:focus {
+    color: var(--input-font-color-active);
+    border: var(--input-border-active);
+    box-shadow: var(--input-shadow-active);
+}
+
+.InputWrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.InputBadge {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    right: var(--space-s);
+    border-radius: 50%;
+    color: var(--color-white);
+    background-color: var(--color-light-gray);
+    transition: background-color 0.2s ease;
+    overflow: hidden;
+}
+
+.Input:focus ~ .InputBadge {
+    background-color: var(--input-font-color-active);
+}
+
+.InputBadge.Transparent {
+    background-color: transparent !important;
+}

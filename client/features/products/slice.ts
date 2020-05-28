@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IProduct } from '../dropzone/components/dropzoneContainer/DropzoneContainer';
 
 export interface Product {
     id: string;
@@ -27,7 +28,23 @@ const initialState: ProductsState = {
 const productsSlice = createSlice({
     name: 'products',
     initialState,
-    reducers: {},
+    reducers: {
+        addProduct(
+            state: ProductsState,
+            action: PayloadAction<IProduct & { fileName: string; id: string }>
+        ) {
+            state.products[action.payload.id] = {
+                name: action.payload.name,
+                quantity: action.payload.quantity,
+                price: action.payload.price,
+                colour: action.payload.colour,
+                id: action.payload.id,
+                imageUrl: `/assets/images/${action.payload.fileName}`,
+            };
+        },
+    },
 });
+
+export const { addProduct } = productsSlice.actions;
 
 export const productsReducer = productsSlice.reducer;

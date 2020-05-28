@@ -1,3 +1,5 @@
+import { IProduct } from '../features/dropzone/components/dropzoneContainer/DropzoneContainer';
+
 interface ApiCallOptions {
     method: 'POST' | 'GET' | 'PUT';
     body: BodyInit;
@@ -18,11 +20,15 @@ const apiCall = async (
     return response.json();
 };
 
-export const saveProduct = async (file: File) => {
-    console.log('upload image', file);
+export const saveProduct = async (input: IProduct & { file: File }) => {
     const fd = new FormData();
-    fd.append('productImage', file);
-    fd.append('productName', 'Test name');
+    fd.append('image', input.file);
+    fd.append('name', input.name);
+    fd.append('price', input.price.toString());
+    fd.append('quantity', input.quantity.toString());
+    fd.append('colour', input.colour);
+
     const response = await apiCall('product', { method: 'POST', body: fd });
-    console.log(response);
+
+    return response;
 };

@@ -1,12 +1,16 @@
 :root {
     --color-white: #fff;
     --color-black: #222;
+    --color-blue: #3498db;
+    --color-gray: #757575;
+    --color-light-gray: #ddd;
 
     --space-s: 6px;
     --space-m: 12px;
     --space-l: 18px;
     --space-xl: 24px;
     --space-xxl: 32px;
+    --space-xxxl: 64px;
 
     /* Products */
     --product-container-width: 320px;
@@ -19,4 +23,21 @@
     /* Modal */
     --modal-background: rgba(0, 0, 0, 0.2);
     --modal-content-container-padding: var(--space-l) var(--space-xl);
+
+    /* Button */
+    --button-padding: var(--space-m) var(--space-l);
+    --button-border-width: 2px;
+    --button-theme-default-border-color: var(--color-blue);
+    --button-theme-default-border: var(--button-border-width) solid
+        var(--button-theme-default-border-color);
+    --button-theme-action-background: var(--color-blue);
+
+    /* Input */
+    --input-border: 1px solid var(--color-light-gray);
+    --input-padding: var(--space-m) var(--space-l);
+    --input-font-color: var(--color-gray);
+    --input-placeholder-color: var(--color-light-gray);
+    --input-border-active: 1px solid var(--color-blue);
+    --input-shadow-active: 0 0 5px var(--color-blue);
+    --input-font-color-active: var(--color-blue);
 }

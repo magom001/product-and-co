@@ -1,0 +1,30 @@
+.Button {
+    padding: var(--button-padding);
+    background: none;
+    border: none;
+    opacity: 0.9;
+    transition: opacity 0.2 ease, box-shadow 0.2 ease, transform 0.2 ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.Button:hover {
+    opacity: 1;
+    box-shadow: 0px 0px 3px 0px rgba(52, 152, 219, 0.5);
+}
+
+.Button:active {
+    transform: scale(0.98);
+}
+
+.Button.ThemeDefault {
+    border: var(--button-theme-default-border);
+    color: var(--button-theme-default-border-color);
+}
+
+.Button.ThemeAction {
+    background: var(--button-theme-action-background);
+    border: var(--button-border-width) solid
+        var(--button-theme-action-background);
+    color: var(--color-white);
+}

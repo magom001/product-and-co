@@ -1,1 +1,1 @@
-export { default } from './DropzoneContainer';
+export { default } from './DropzoneContainer.connect';
