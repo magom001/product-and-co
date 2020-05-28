@@ -1,0 +1,22 @@
+body:global(.modal) {
+    overflow: hidden;
+}
+
+.Modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--modal-background);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+.Content {
+    background-color: var(--color-white);
+    padding: var(--modal-content-container-padding);
+}

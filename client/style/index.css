@@ -11,3 +11,11 @@ body {
     height: 100%;
     color: var(--color-black);
 }
+
+body :global(#root) {
+    transition: filter 0.2s ease;
+}
+
+body:global(.modal) :global(#root) {
+    filter: blur(2px);
+}

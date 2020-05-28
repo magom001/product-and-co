@@ -1,4 +1,10 @@
 import express, { Application } from 'express';
+import fileUpload from 'express-fileupload';
+import dotenv  from 'dotenv';
+
+dotenv.config();
+
+import api from './api';
 import Page404 from './pages/404';
 
 import { mockProducts } from './mock';
@@ -7,6 +13,11 @@ const app: Application = express();
 
 // better use nginx
 app.use('/assets', express.static('static'));
+
+// simplify fileupload
+app.use(fileUpload());
+
+app.use('/api', api);
 
 app.get('/', (_req, res) => {
     const preloadedState = {

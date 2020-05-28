@@ -1,0 +1,7 @@
+.Container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 96px;
+    padding: var(--product-container-padding);
+}

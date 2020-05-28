@@ -15,4 +15,8 @@
     --product-container-inner-padding: var(--space-l);
     --product-container-padding: var(--product-container-padding-top)
         var(--product-container-padding-left);
+
+    /* Modal */
+    --modal-background: rgba(0, 0, 0, 0.2);
+    --modal-content-container-padding: var(--space-l) var(--space-xl);
 }
