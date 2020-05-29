@@ -11,11 +11,13 @@ import { Button } from '../../../../components';
 interface AddProductButtonProps {
     onFilePicked: (file: File) => void;
     file: File | null;
+    className?: string;
 }
 
 const AddProductButton: FunctionComponent<AddProductButtonProps> = ({
     onFilePicked,
     file,
+    className,
 }) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -36,7 +38,7 @@ const AddProductButton: FunctionComponent<AddProductButtonProps> = ({
     );
 
     return (
-        <Button theme="action">
+        <Button theme="action" className={className}>
             <input
                 className={classes.Input}
                 type="file"

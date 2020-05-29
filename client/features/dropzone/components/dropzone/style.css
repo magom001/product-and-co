@@ -1,0 +1,48 @@
+.Dropzone {
+    color: var(--color-blue);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.Dropzone.Valid {
+    color: var(--color-green);
+}
+
+.Dropzone.Invalid {
+    color: var(--color-red);
+}
+
+.Frame {
+    z-index: -1;
+    user-select: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: scale(1);
+    border: 2px solid var(--color-blue);
+}
+
+.Dropzone.Invalid .Frame {
+    border: 2px solid var(--color-red);
+}
+
+.Dropzone.Valid .Frame :global {
+    display: block;
+    border: 2px solid var(--color-green);
+    animation: waiting 2s steps(4, start) infinite;
+}
+
+@keyframes :global(waiting) {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(0.85);
+    }
+}

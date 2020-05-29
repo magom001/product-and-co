@@ -4,6 +4,7 @@ import { saveProduct } from '../../../../api';
 import AddProductButton from '../addProductButton';
 import classes from './style.css';
 import AddProductModal from '../addProductModal';
+import Dropzone from '../dropzone';
 import { DropzoneProps } from './DropzoneContainer.connect';
 import { Product } from '../../../products/slice';
 
@@ -62,17 +63,19 @@ const DropzoneContainer: FunctionComponent<DropzoneProps> = ({
 
             if (response.error) {
                 dispatchNotification(`Failed to save product ${product.name}`);
-                onModalClose();
             } else {
                 addProduct(Object.assign({}, product, response));
             }
+
+            onModalClose();
         }
     }, [file, product]);
 
     return (
         <>
             <div className={classes.Container}>
-                <AddProductButton onFilePicked={onFilePicked} file={file} />
+                <AddProductButton onFilePicked={onFilePicked} file={file} className={classes.Control} />
+                <Dropzone onFilePicked={onFilePicked} className={classes.Control} />
             </div>
             <AddProductModal
                 progress={progress}

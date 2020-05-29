@@ -5,3 +5,11 @@
     height: 96px;
     padding: var(--product-container-padding);
 }
+
+.Control {
+    height: 90px;
+}
+
+.Control:not(:first-child) {
+    margin-left: var(--space-m);
+}
