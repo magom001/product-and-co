@@ -2,7 +2,7 @@ import { Product } from '../features/products/slice';
 
 interface ApiCallOptions {
     method: 'POST' | 'GET' | 'PUT' | 'DELETE';
-    body: BodyInit;
+    body?: BodyInit;
     headers?: HeadersInit;
 }
 
@@ -36,8 +36,7 @@ export const saveProduct = async (
 };
 
 export const deleteProduct = async (id: Product['id']) => {
-    return await apiCall('product', {
+    return await apiCall(`product/${id}`, {
         method: 'DELETE',
-        body: JSON.stringify({ id }),
     });
 };

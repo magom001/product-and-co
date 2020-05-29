@@ -1,9 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import util from 'util';
+import { getImageFilePath } from '../../helpers';
 
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
+const deleteFile = util.promisify(fs.unlink);
 
 const DATA_FILE_NAME = 'data.json';
 
@@ -54,6 +56,12 @@ class ProductModel {
 
     public async deleteProduct(id: string): Promise<boolean> {
         if (this.products[id]) {
+            const imagePath = getImageFilePath(this.products[id].fileName);
+
+            if (fs.existsSync(imagePath)) {
+                await deleteFile(imagePath);
+            }
+
             delete this.products[id];
             await this.persist();
             return true;
@@ -71,6 +79,10 @@ class ProductModel {
         await this.persist();
 
         return newProduct;
+    }
+
+    public getProductById(id: string): Product {
+        return this.products[id];
     }
 }
 

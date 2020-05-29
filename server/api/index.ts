@@ -1,9 +1,10 @@
 import express from 'express';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
-
 import { UploadedFile } from 'express-fileupload';
+
 import { get as getProductModel } from '../models/product/product';
+import { getImageFilePath } from '../helpers';
 
 const router = express.Router();
 
@@ -29,7 +30,8 @@ router.post('/product', async (req, res) => {
 
     const newProduct = await productModel.addProduct(productData);
 
-    const p = path.join(process.cwd(), process.env.IMAGES_PATH || '', fileName);
+    const p = getImageFilePath(fileName);
+
     file.mv(p, (err) => {
         if (err) {
             productModel.deleteProduct(newProduct.id);
@@ -40,15 +42,15 @@ router.post('/product', async (req, res) => {
     });
 });
 
-router.delete('/product', async (req, res) => {
-    if (!req.body.id) {
+router.delete('/product/:id', async (req, res) => {
+    if (!req.params.id) {
         return res.status(400).send('Expected an id but none found');
     }
 
     const productModel = await getProductModel();
 
     try {
-        await productModel.deleteProduct(req.body.id);
+        await productModel.deleteProduct(req.params.id);
         res.status(200).json({ status: 'ok' });
     } catch (_error) {
         res.status(500).json({ error: 'Server error' });
