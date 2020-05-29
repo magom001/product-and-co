@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useCallback } from 'react';
 import { Modal, Button } from '../../../../components';
 import { NotificationModalProps } from './NotificationModal.connect';
 
@@ -9,11 +9,15 @@ const NotificationModal: FunctionComponent<NotificationModalProps> = ({
     isVisible,
     onClose,
 }) => {
+    const closeModal = useCallback(() => {
+        onClose();
+    }, [onClose]);
+
     return (
-        <Modal visible={isVisible} onClose={onClose}>
+        <Modal visible={isVisible} onClose={closeModal}>
             <div className={classes.Container}>
                 <span className={classes.Message}>{message}</span>
-                <Button theme="action" onClick={onClose}>
+                <Button theme="action" onClick={closeModal}>
                     <span className={classes.ButtonText}>Ok</span>
                 </Button>
             </div>

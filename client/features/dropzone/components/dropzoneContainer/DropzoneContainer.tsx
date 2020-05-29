@@ -7,18 +7,23 @@ import AddProductModal from '../addProductModal';
 import { DropzoneProps } from './DropzoneContainer.connect';
 import { Product } from '../../../products/slice';
 
+const INITIAL_PRODUCT_VALUES = {
+    name: 'Product XYZ',
+    quantity: 1,
+    price: 1,
+    colour: 'white',
+};
+
 const DropzoneContainer: FunctionComponent<DropzoneProps> = ({
     addProduct,
+    dispatchNotification,
 }) => {
     const [file, setFile] = useState<File | null>(null);
     const [imgSrc, setImgSrc] = useState<string | null>(null);
     const [progress, setProgress] = useState<boolean>(false);
-    const [product, setProduct] = useState<Omit<Product, 'id' | 'fileName'>>({
-        name: 'Product XYZ',
-        quantity: 1,
-        price: 1,
-        colour: 'white',
-    });
+    const [product, setProduct] = useState<Omit<Product, 'id' | 'fileName'>>(
+        INITIAL_PRODUCT_VALUES
+    );
 
     const onProductChange = useCallback(
         (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,16 +51,21 @@ const DropzoneContainer: FunctionComponent<DropzoneProps> = ({
     const onModalClose = useCallback(() => {
         setImgSrc(null);
         setFile(null);
+        setProduct(INITIAL_PRODUCT_VALUES);
     }, []);
 
     const onSave = useCallback(async () => {
         if (file) {
             setProgress(true);
             const response = await saveProduct({ file, ...product });
-            console.log(response);
-            // TODO: handle bad response
-            addProduct(Object.assign({}, product, response));
             setProgress(false);
+
+            if (response.error) {
+                dispatchNotification(`Failed to save product ${product.name}`);
+                onModalClose();
+            } else {
+                addProduct(Object.assign({}, product, response));
+            }
         }
     }, [file, product]);
 

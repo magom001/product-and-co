@@ -35,7 +35,7 @@ router.post('/product', async (req, res) => {
     file.mv(p, (err) => {
         if (err) {
             productModel.deleteProduct(newProduct.id);
-            res.status(500).send(err);
+            res.status(500).send({ error: 'Server error' });
         } else {
             res.status(200).json({ status: 'ok', ...newProduct });
         }

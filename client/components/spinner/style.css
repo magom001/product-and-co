@@ -1,0 +1,25 @@
+.Spinner {
+    --spinner-size: 48px;
+    --spinner-border-radius: calc(var(--spinner-size) / 2);
+
+    width: var(--spinner-size);
+    height: var(--spinner-size);
+    border-radius: var(--spinner-border-radius);
+    border-top: 2px solid var(--color-blue);
+    border-left: 2px solid var(--color-blue);
+    border-right: 2px solid transparent;
+}
+
+.Spinner :global {
+    animation: rotation 1s linear 0s infinite;
+}
+
+@keyframes :global(rotation){
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,8 +1,9 @@
-import React, { useState, FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import { Modal, Button, Input } from '../../../../components';
 
 import classes from './style.css';
 import { Product } from '../../../products/slice';
+import Spinner from '../../../../components/spinner';
 
 interface AddProductModalProps {
     visible: boolean;
@@ -25,7 +26,12 @@ const AddProductModal: FunctionComponent<AddProductModalProps> = ({
 }) => {
     return (
         <Modal visible={visible} onClose={onClose}>
-            {progress && <section>Loading...</section>}
+            {progress && (
+                <section className={classes.BlockScreen}>
+                    <Spinner />
+                </section>
+            )}
+
             <section className={classes.Container}>
                 <img src={imgSrc} className={classes.Image} />
                 <Input
