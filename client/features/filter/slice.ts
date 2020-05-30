@@ -15,7 +15,7 @@ const filterSlice = createSlice({
         setPattern(state: FilterState, action: PayloadAction<string>) {
             state.pattern = action.payload;
         },
-        resetPattern(state: FilterState, action: PayloadAction<string>) {
+        resetPattern(state: FilterState) {
             state.pattern = '';
         },
     },

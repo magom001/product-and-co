@@ -36,6 +36,18 @@ const config = {
                     },
                 ],
             },
+            {
+                test: /\.svg/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[contenthash].[ext]',
+                            publicPath: '/static/app'
+                        },
+                    },
+                ],
+            },
         ],
     },
     plugins: [

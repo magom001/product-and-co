@@ -11,40 +11,40 @@ interface InputProps {
     type?: 'text' | 'number';
     name?: string;
     badge?: string | React.ReactElement;
+    step?: string;
 }
 
-const Input: FunctionComponent<InputProps> = ({
-    value,
-    onChange,
-    type = 'text',
-    className,
-    placeholder,
-    badge,
-    name,
-}) => {
-    return (
-        <div className={cn(classes.InputWrapper, className)}>
-            <input
-                className={classes.Input}
-                onChange={onChange}
-                readOnly={!Boolean(onChange)}
-                disabled={!Boolean(onChange)}
-                type={type}
-                value={value}
-                name={name}
-                placeholder={placeholder}
-            />
-            {badge && (
-                <span
-                    className={cn(classes.InputBadge, {
-                        [classes.Transparent]: !(badge instanceof String),
-                    })}
-                >
-                    {badge}
-                </span>
-            )}
-        </div>
-    );
-};
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+    (
+        { value, onChange, type = 'text', className, placeholder, badge, name, step },
+        ref
+    ) => {
+        return (
+            <div className={cn(classes.InputWrapper, className)}>
+                <input
+                    className={classes.Input}
+                    onChange={onChange}
+                    readOnly={!Boolean(onChange)}
+                    disabled={!Boolean(onChange)}
+                    type={type}
+                    value={value}
+                    name={name}
+                    placeholder={placeholder}
+                    ref={ref}
+                    step={step}
+                />
+                {badge && (
+                    <span
+                        className={cn(classes.InputBadge, {
+                            [classes.Transparent]: typeof badge !== 'string',
+                        })}
+                    >
+                        {badge}
+                    </span>
+                )}
+            </div>
+        );
+    }
+);
 
 export default Input;

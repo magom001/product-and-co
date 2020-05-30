@@ -1,0 +1,22 @@
+.Container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: var(--product-container-padding);
+}
+
+.Input {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.ClearButton {
+    position: absolute;
+    right: calc(var(--product-container-padding-left) + var(--space-m));
+}
+
+.Icon {
+    position: absolute;
+    left: calc(var(--product-container-padding-left) + var(--space-m));
+    z-index: 1;
+}

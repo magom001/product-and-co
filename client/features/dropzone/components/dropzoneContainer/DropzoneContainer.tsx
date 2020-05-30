@@ -11,7 +11,7 @@ import { Product } from '../../../products/slice';
 const INITIAL_PRODUCT_VALUES = {
     name: 'Product XYZ',
     quantity: 1,
-    price: 1,
+    price: 1.00,
     colour: 'white',
 };
 
