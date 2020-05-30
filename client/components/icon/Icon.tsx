@@ -4,8 +4,9 @@ import cn from 'classnames';
 import classes from './style.css';
 
 import search from './icons/search.svg';
+import arrow from './icons/arrow.svg';
 
-type IconType = 'search';
+type IconType = 'search' | 'arrow';
 type Size = 's' | 'm' | 'l';
 
 interface IconProps {
@@ -16,6 +17,7 @@ interface IconProps {
 
 const SvgUrls: Record<IconType, string> = {
     search,
+    arrow,
 };
 
 const SizeStyle: Record<Size, { width: any; height: any }> = {

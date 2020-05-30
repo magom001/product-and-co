@@ -1,3 +1,9 @@
 .Page {
     padding: var(--space-l);
 }
+
+@media screen and (max-width: 500px) {
+    .Page {
+        padding: 0;
+    }
+}

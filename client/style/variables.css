@@ -42,4 +42,7 @@
     --input-border-active: 1px solid var(--color-blue);
     --input-shadow-active: 0 0 5px var(--color-blue);
     --input-font-color-active: var(--color-blue);
+
+    /* Arrow buttons */
+    --arrow-button-diameter: 72px;
 }

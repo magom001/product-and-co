@@ -1,0 +1,36 @@
+.Container {
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.Button {
+    width: var(--arrow-button-diameter);
+    height: var(--arrow-button-diameter);
+    background-color: #e8e9ed;
+    border-radius: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    opacity: 1;
+    transition: opacity ease 0.2s;
+    margin: 0 calc(-1 * calc(var(--arrow-button-diameter) / 3));
+    pointer-events: auto;
+}
+
+.Button.Hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ButtonLeft {
+    transform: rotate(180deg);
+}
+
+.Icon {
+    width: 24px;
+    height: 24px;
+    margin-left: calc(var(--arrow-button-diameter) / 4);
+}

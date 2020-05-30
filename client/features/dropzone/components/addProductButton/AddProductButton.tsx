@@ -4,6 +4,7 @@ import React, {
     useEffect,
     useRef,
 } from 'react';
+import cn from 'classnames';
 
 import classes from './style.css';
 import { Button } from '../../../../components';
@@ -38,7 +39,7 @@ const AddProductButton: FunctionComponent<AddProductButtonProps> = ({
     );
 
     return (
-        <Button theme="action" className={className}>
+        <Button theme="action" className={cn(classes.Button, className)}>
             <input
                 className={classes.Input}
                 type="file"
