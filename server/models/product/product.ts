@@ -8,6 +8,7 @@ const writeFile = util.promisify(fs.writeFile);
 const deleteFile = util.promisify(fs.unlink);
 
 const DATA_FILE_NAME = 'data.json';
+const filePath = path.join(process.cwd(), DATA_FILE_NAME)
 
 interface Product {
     id: string;
@@ -22,16 +23,12 @@ class ProductModel {
     static ID = 0;
     static instance: ProductModel | null = null;
     static async get(): Promise<ProductModel> {
-        const filePath = path.join(__dirname, DATA_FILE_NAME);
         const data = JSON.parse(
             await readFile(filePath, { encoding: 'utf-8' })
         );
 
-        if (!ProductModel.instance) {
-            ProductModel.instance = new ProductModel(data.products);
-            ProductModel.ID = data.ID;
-        }
-        return ProductModel.instance;
+        ProductModel.ID = data.ID;
+        return new ProductModel(data.products);
     }
 
     private products: Record<string, Product>;
@@ -42,7 +39,7 @@ class ProductModel {
 
     private async persist() {
         await writeFile(
-            path.join(__dirname, DATA_FILE_NAME),
+            filePath,
             JSON.stringify({
                 ID: ProductModel.ID,
                 products: this.getProducts(),

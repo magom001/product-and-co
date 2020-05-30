@@ -8,7 +8,6 @@ dotenv.config();
 import api from './api';
 import Page404 from './pages/404';
 
-import { mockProducts } from './mock';
 import { get } from './models/product/product';
 
 const app: Application = express();
