@@ -1,4 +1,10 @@
-import { createSlice, PayloadAction, createAction } from '@reduxjs/toolkit';
+import {
+    createSlice,
+    PayloadAction,
+    createAction,
+    createSelector,
+} from '@reduxjs/toolkit';
+import { DefaultRootState } from 'react-redux';
 
 export interface Product {
     id: string;
@@ -52,6 +58,28 @@ const productsSlice = createSlice({
         },
     },
 });
+
+const rawProductsSelector = (state: DefaultRootState) =>
+    state.products.products;
+
+const filterPattern = (state: DefaultRootState) => state.filter.pattern;
+
+export const productsSelector = createSelector(
+    rawProductsSelector,
+    filterPattern,
+    (products, pattern) =>
+        Object.keys(products).reduce((prev, id) => {
+            const name = products[id].name.toLowerCase();
+            if (name.includes(pattern)) {
+                prev.push({
+                    id,
+                    name,
+                });
+            }
+
+            return prev;
+        }, [] as { id: Product['id']; name: Product['name'] }[])
+);
 
 export const deleteProduct = createAction<string>('@PRODUCT/DELETE');
 

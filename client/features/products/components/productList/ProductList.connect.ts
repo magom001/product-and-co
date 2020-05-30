@@ -1,11 +1,16 @@
 import { connect, DefaultRootState } from 'react-redux';
 import Component from './ProductList';
+import { productsSelector } from '../../slice';
 
 const mapStateToProps = (state: DefaultRootState) => ({
-    productIds: Object.keys(state.products.products),
+    products: productsSelector(state),
 });
 
 type MapState = ReturnType<typeof mapStateToProps>;
-export type ProductListProps = MapState;
+interface OwnProps {
+    filter?: string;
+}
+
+export type ProductListProps = MapState & OwnProps;
 
 export default connect<MapState>(mapStateToProps)(Component);

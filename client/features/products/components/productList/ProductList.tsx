@@ -4,13 +4,13 @@ import Product from '../product';
 
 import classes from './style.css';
 
-const ProductList: FunctionComponent<ProductListProps> = ({ productIds }) => {
+const ProductList: FunctionComponent<ProductListProps> = ({ products }) => {
     return (
         <section className={classes.Container}>
-            {productIds.map((productId) => (
+            {products.map((product) => (
                 <Product
-                    key={productId}
-                    id={productId}
+                    key={product.id}
+                    id={product.id}
                     className={classes.Product}
                 />
             ))}

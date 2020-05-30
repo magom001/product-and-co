@@ -4,6 +4,8 @@ import { productsReducer, ProductsState } from '../features/products/slice';
 import { NotificationState } from '../features/notification/slice';
 
 import { notificationReducer } from '../features/notification/slice';
+import { FilterState } from '../features/filter/slice';
+import { filterRootReducer } from '../features/filter';
 
 const bypass = <T extends {}>(state: T = {} as T) => state;
 
@@ -16,6 +18,7 @@ declare module 'react-redux' {
         config: Config;
         products: ProductsState;
         notification: NotificationState;
+        filter: FilterState;
     }
 }
 
@@ -24,6 +27,7 @@ const createRootReducer = () =>
         config: bypass,
         products: productsReducer,
         notification: notificationReducer,
+        filter: filterRootReducer,
     });
 
 export default createRootReducer;
