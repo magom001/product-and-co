@@ -1,10 +1,10 @@
-import React, { FunctionComponent, useCallback } from 'react';
+import React, { FunctionComponent, useCallback, useMemo } from 'react';
 import cn from 'classnames';
 import { Product } from '../../slice';
 
 import classes from './style.css';
 import { ProductProps } from './Product.connect';
-import { CloseButton } from '../../../../components';
+import { CloseButton, Preview } from '../../../../components';
 
 const Product: FunctionComponent<ProductProps> = ({
     className,
@@ -16,6 +16,14 @@ const Product: FunctionComponent<ProductProps> = ({
         deleteProduct(id);
     }, [deleteProduct, id]);
 
+    const qty = useMemo(() => {
+        if (!quantity) {
+            return 'Out of order';
+        }
+
+        return `Quantity: ${quantity}`;
+    }, [quantity]);
+
     return (
         <div className={cn(classes.Container, className)}>
             <div className={classes.Inner}>
@@ -24,11 +32,11 @@ const Product: FunctionComponent<ProductProps> = ({
                     className={classes.CloseButton}
                 />
                 <span className={classes.ProductName}>{name}</span>
-                <img className={classes.Image} src={imageUrl} />
+                <Preview className={classes.Image} src={imageUrl} />
                 <div className={classes.Attribute}>
                     Price: ${price.toFixed(2)}
                 </div>
-                <div className={classes.Attribute}>Quantity: {quantity}</div>
+                <div className={classes.Attribute}>{qty}</div>
                 <div className={classes.Attribute}>Colour: {colour}</div>
             </div>
         </div>

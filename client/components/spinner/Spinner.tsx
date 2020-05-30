@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
+import cn from 'classnames';
 
 import classes from './style.css';
 
-const Spinner = () => <div className={classes.Spinner} />;
+interface SpinnerProps {
+    className?: string;
+}
+
+const Spinner: FunctionComponent<SpinnerProps> = ({ className }) => (
+    <div className={cn(classes.Spinner, className)} />
+);
 
 export default Spinner;

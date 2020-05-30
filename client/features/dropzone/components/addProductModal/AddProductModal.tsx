@@ -3,7 +3,7 @@ import { Modal, Button, Input } from '../../../../components';
 
 import classes from './style.css';
 import { Product } from '../../../products/slice';
-import Spinner from '../../../../components/spinner';
+import { Spinner } from '../../../../components';
 
 interface AddProductModalProps {
     visible: boolean;

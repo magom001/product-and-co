@@ -1,0 +1,33 @@
+.Container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Container.Loaded .Image {
+    display: block;
+}
+
+.Spinner {
+    display: none;
+}
+
+.Container.Loading .Spinner {
+    display: block;
+}
+
+.Container.Error .ErrorMessage {
+    display: block;
+}
+
+.Image {
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ErrorMessage {
+    display: none;
+    color: var(--color-blue);
+}

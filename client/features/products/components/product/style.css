@@ -2,6 +2,8 @@
     width: var(--product-container-width);
     padding: var(--product-container-padding);
     transition: all 0.2s ease;
+    flex-shrink: 0;
+    flex-grow: 0;
 }
 
 .Container:hover .Inner {
@@ -24,6 +26,8 @@
     overflow: hidden;
     margin: var(--space-s) auto;
     text-align: center;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .Image {
@@ -37,7 +41,8 @@
             var(--product-container-padding-left) - 2 *
             var(--product-container-inner-padding)
     );
-    object-fit: cover;
+    
+    margin-bottom: var(--space-xl);
 }
 
 .Attribute {
