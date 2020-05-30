@@ -1,5 +1,6 @@
 import express, { Application } from 'express';
 import fileUpload from 'express-fileupload';
+import compression from 'compression';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -12,6 +13,7 @@ import { get } from './models/product/product';
 
 const app: Application = express();
 
+app.use(compression());
 app.use('/static', express.static('static'));
 
 // simplify fileupload
