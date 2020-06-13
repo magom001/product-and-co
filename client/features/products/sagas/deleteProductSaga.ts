@@ -5,17 +5,17 @@ import {
     select,
     fork,
     call,
-    delay,
+    getContext,
 } from 'redux-saga/effects';
 import { deleteProduct, removeProduct, Product, addProduct } from '../slice';
 import { getProductById } from '../selectors';
-import { deleteProduct as deleteProductApi } from '../../../api';
 import { dispatchNotification } from '../../notification/slice';
 
 const deleteProductWorker = function* (product: Product) {
     try {
         yield put(removeProduct(product.id));
-        const { error } = yield call(deleteProductApi, product.id);
+        const api = yield getContext('api');
+        const { error } = yield call(api, product.id);
 
         if (error) {
             yield put(

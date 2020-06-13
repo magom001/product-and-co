@@ -1,11 +1,11 @@
-import { all, spawn, ForkEffect, AllEffect } from 'redux-saga/effects';
+import { all, spawn } from 'redux-saga/effects';
 
 /** IMPORT SAGAS */
-import { productsRootSaga } from '../features/products/index';
+import { productsRootSaga } from '../features/products';
 import { notificatitonsRootSaga } from '../features/notification/';
 /** END IMPORT SAGAS */
 
-type SagaType = () => Generator<AllEffect<ForkEffect<never>>, void, unknown>;
+type SagaType = () => Generator<any>;
 
 const sagas: SagaType[] = [
     // Add feature sagas here
