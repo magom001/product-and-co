@@ -1,0 +1,9 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t magom001/test -f ./Dockerfile.ci .
+
+script:
+    - docker run magom001/test /bin/sh -c "npm test"
